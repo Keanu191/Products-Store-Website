@@ -2,7 +2,7 @@
 -- 9/01/2025
 -- SQL Script with the Query's required for the products that will be on the front-end website
 
-CREATE DATABASE IF NOT EXISTS online_store;
+CREATE DATABASE online_store;
 
 USE online_store;
 
@@ -57,4 +57,4 @@ INSERT INTO products (product_id, sku, product_name, product_image, price, categ
 (37, 'ROUT67890', 'Asus RT-AX88U', NULL, 299.99, 'Networking', 1, 'San Francisco'), 
 (38, 'CPU67890', 'AMD Ryzen 9 5900X', NULL, 429.99, 'Processors', 1, 'Miami'), 
 (39, 'CAM23456', 'Fujifilm X-T30', NULL, 799.99, 'Cameras', 1, 'New York'), 
-(40, 'VR78901', 'Valve Index', NULL, 999.99, 'VR Accessories');
+(40, 'VR78901', 'Valve Index', NULL, 999.99, 'VR Accessories', 0, 'Chicago');
