@@ -11,26 +11,26 @@
 /* A Function to debug whatever is happening to
 * the inspect element console rather than echoing text onto the webpage
 */
-function debug_to_console($data) {
+function debug_to_console($data): void {
     $output = $data;
-    if (is_array($output))
-        $output = implode(',', $output);
+    if (is_array(value: $output))
+        $output = implode(separator: ',', array: $output);
 
     echo "<script>console.log('Debug : " . $output . "' );</script>";
 }
 
 // A function to connect to the SQL database
-function connectSQL($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME)
+function connectSQL($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME): void
 {
     try {
-        $conn = new PDO("mysql:host=$DB_HOST;dbname=$DB_NAME", $DB_USER, $DB_PASSWORD);
+        $conn = new PDO(dsn: "mysql:host=$DB_HOST;dbname=$DB_NAME", username: $DB_USER, password: $DB_PASSWORD);
         // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        debug_to_console("Connected successfully to the online store!");
+        $conn->setAttribute(attribute: PDO::ATTR_ERRMODE, value: PDO::ERRMODE_EXCEPTION);
+        debug_to_console(data: "Connected successfully to the online store!");
     }
     catch (PDOException $e)
     {
-        debug_to_console("Connection to the online store failed: " . $e->getMessage());
+        debug_to_console(data: "Connection to the online store failed: " . $e->getMessage());
     }
 
 }
@@ -38,20 +38,24 @@ function connectSQL($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME)
 /* Call the SQL connection method and initalise the parameters of the method
 with the connection details of the database, setting a password here can be optional
 */
-connectSQL('localhost', 'root', '', 'online_store');
+connectSQL(DB_HOST: 'localhost', DB_USER: 'root', DB_PASSWORD: '', DB_NAME: 'online_store');
 
 // Set the title for the tab
-$title = 'Home Page';
+$title = 'Functions Page';
 ?>
 <!doctype html>
 <html>
   <head>
     <!-- Call Bootstrap 5.3.3 CSS-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <!-- Reference the latest version of font awesome v5, due to v6 not having CDN support -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+  <!-- Call Styles.css -->
+  <link href='assets\css\styles.css?<?php echo time(); ?>' rel='stylesheet'>
   <!-- navbar -->
-  <nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Active Systems PTY</a>
+    <img class="logo" src="assets/img/Logo.png" alt="Logo"/>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -75,7 +79,11 @@ $title = 'Home Page';
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Link</a>
+          <i class="fa-solid fa-cart-shopping"></i>
+          <i class="fa-solid fa-user"></i>
+        </li>
+        <li class="nav-item">
+          
         </li>
       </ul>
       <form class="d-flex" role="search">
